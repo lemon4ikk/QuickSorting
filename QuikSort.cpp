@@ -4,34 +4,31 @@
 
 using namespace std;
 
-void sort(int* arr, int begin, int end)
+void sort(int Arr[], int begin, int end)
 {
     const int size = 10;
     int pivot;
     int i = begin;
     int j = end;
+    int buffer;
 
-    pivot = arr[rand() % size];
-
-    //cout << pivot;
+    pivot = Arr[rand() % size];
 
     if (i >= j)
         return;
 
     while (i <= j)
     {
-        while (arr[i] < pivot) i++;
-        while (arr[j] > pivot) j--;
+        while (Arr[i] < pivot) i++;
+        while (Arr[j] > pivot) j--;
         
         if (i <= j) 
         {
-            if (arr[i] > arr[j]) 
+            if (Arr[i] > Arr[j]) 
             {
-            int buffer;
-
-            buffer = arr[j];
-            arr[j] = arr[i];
-            arr[i] = buffer;
+            buffer = Arr[j];
+            Arr[j] = Arr[i];
+            Arr[i] = buffer;
 
             i++;
             j--;
@@ -39,10 +36,12 @@ void sort(int* arr, int begin, int end)
         }
     }
 
-    if (begin < j) sort(arr, begin, j);
-    if (i < end) sort(arr, i, end);
-    
-    return sort(arr, begin, end);
+    if(j > begin) {
+        return sort(Arr, begin, j);
+    }
+    if(end < i) {
+        return sort(Arr, i, end);
+    } 
 }
 
 int main() {
