@@ -77,5 +77,6 @@ int main() {
             }
         }
 
-       file.close();
+        file2.close();
+        file.close();
 }
