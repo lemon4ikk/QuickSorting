@@ -8,7 +8,7 @@ void sort(int Arr[], int begin, int end)
 {
     if (begin > end) return;
 
-    const int size = 10;
+    const int size = 1024;
     int pivot;
     int i = begin;
     int j = end;
@@ -43,7 +43,7 @@ int main() {
 
     srand(time(NULL));
 
-    const int size = 10;
+    const int size = 1024;
     int Arr[size];
     
     char path[] = "sorted.csv";
@@ -63,7 +63,7 @@ int main() {
 
             for(int i = 0; i < size; i++)
             {
-                Arr[i] = rand() % 50;
+                Arr[i] = rand() % 1000;
                 file2 << Arr[i] << "\n";
             } 
 
