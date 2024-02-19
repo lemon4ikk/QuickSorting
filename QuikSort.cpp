@@ -1,12 +1,12 @@
+#include <stdlib.h>
 #include <iostream>
 #include <fstream>
-#include <ctime>
 
 using namespace std;
 
 void sort(int Arr[], int begin, int end)
 {
-    if (begin > end) return;
+    if (begin >= end) return;
 
     const int size = 1024;
     int pivot;
@@ -15,9 +15,6 @@ void sort(int Arr[], int begin, int end)
     int buffer;
 
     pivot = Arr[rand() % size];
-
-    if (i >= j)
-        return;
 
     while (i <= j)
     {
@@ -41,19 +38,19 @@ void sort(int Arr[], int begin, int end)
 int main() {
     setlocale(LC_ALL, "ru");
 
-    srand(time(NULL));
+    srand(1234);
 
     const int size = 1024;
     int Arr[size];
     
-    char path[] = "sorted.csv";
-    char path2[] = "unsorted.csv";
+    char path_unsorted[] = "unsorted.csv";
+    char path_sorted[] = "sorted.csv";
 
-    fstream file, file2;                                                       
-        file.open(path, fstream::trunc | fstream::in | fstream::out);
-        file2.open(path2, fstream::trunc | fstream::in | fstream::out);                                     
+    fstream unsorted, sorted;     
+        unsorted.open(path_unsorted, fstream::trunc | fstream::in | fstream::out);                                                   
+        sorted.open(path_sorted, fstream::trunc | fstream::in | fstream::out);                                    
 
-        if (!file.is_open())
+        if (!unsorted.is_open())
         {
             cout << "Ошибка открытия файла!" << endl;
         }                                                               
@@ -64,19 +61,17 @@ int main() {
             for(int i = 0; i < size; i++)
             {
                 Arr[i] = rand() % 1000;
-                file2 << Arr[i] << "\n";
+                unsorted << Arr[i] << "\n";
             } 
 
             sort(Arr, 0, size - 1);
-            
-            file << "\n";
 
             for (int i = 0; i < size; i++)
             {
-            file << Arr[i] << "\n";
+            sorted << Arr[i] << "\n";
             }
         }
 
-        file2.close();
-        file.close();
+        unsorted.close();
+        sorted.close();
 }
